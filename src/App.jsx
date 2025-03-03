@@ -44,6 +44,17 @@ const App = () => {
       });
   };
 
+  const reset = () => {
+    axios
+      .post("https://nbody-back-79c68c764a72.herokuapp.com/body/reset")
+      .then((response) => {
+        setBodyPoints(response.data);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la réinitialisation:", error);
+      });
+  }
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       simulateMovement();
@@ -81,6 +92,9 @@ const App = () => {
         <h3>Créer un nouveau point</h3>
         <button type="button" onClick={addNewPoint}>
           Ajouter un point
+        </button>
+        <button type="button" onClick={reset}>
+          Reset
         </button>
       </div>
 
