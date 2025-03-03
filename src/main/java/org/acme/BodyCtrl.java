@@ -58,4 +58,10 @@ public class BodyCtrl {
         points.add(point);
         return point;
     }
+
+    @DELETE
+    @Path("/reset")
+    public void resetPoints() {
+        points.clear();
+    }
 }
