@@ -134,6 +134,8 @@ const App = () => {
           zoom={10}
           style={{ height: "100%", width: "1430px" }}
           crs={L.CRS.Simple}
+          minZoom={-Infinity}
+          maxZoom={Infinity}
         >
           <TileLayer url="" />
 
