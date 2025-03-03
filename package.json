@@ -3,12 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": "http://localhost:8080",
   "scripts": {
+    "start": "vite preview",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "axios": "^1.8.1",
