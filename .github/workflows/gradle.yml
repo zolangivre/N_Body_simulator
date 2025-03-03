@@ -29,9 +29,9 @@ jobs:
 
       - name: Lancer les tests backend
         run: ./gradlew test
-
+        
       - name: Générer l'image Docker du backend
-        run: docker build -t my-backend ./backend
+        run: docker build -t my-backend $GITHUB_WORKSPACE/backend
 
   frontend:
     name: Build & Test Frontend
