@@ -139,34 +139,36 @@ const App = () => {
         >
           <TileLayer url="" />
 
-          {bodyPoints.map((point) => (
-            <Marker
-              key={point.id}
-              position={[point.y, point.x]}
-              icon={L.divIcon({
-                className: "custom-icon",
-                html: `<div style="background-color: ${
-                  selectedBodyPoint?.id === point.id ? "red" : "blue"
-                }; border-radius: 50%; width: 10px; height: 10px;"></div>`,
-              })}
-              eventHandlers={{
-                click: () => setSelectedBodyPoint(point),
-              }}
-            >
-              <Popup>
-                <div>
-                  <h3>{point.name}</h3>
-                  <p>X: {point.x}</p>
-                  <p>Y: {point.y}</p>
-                  <p>Vitesse X: {point.vitesseX}</p>
-                  <p>Vitesse Y: {point.vitesseY}</p>
-                  <p>Accélération X: {point.accelerationX}</p>
-                  <p>Accélération Y: {point.accelerationY}</p>
-                  <p>Masse: {point.masse}</p>
-                </div>
-              </Popup>
-            </Marker>
-          ))}
+          {bodyPoints.map((point) => {
+            return (
+              <Marker
+                key={point.id}
+                position={[point.y, point.x]}
+                icon={L.divIcon({
+                  className: "custom-icon",
+                  html: `<div style="background-color: ${
+                    selectedBodyPoint?.id === point.id ? "red" : "blue"
+                  }; border-radius: 50%; width: 10px; height: 10px;"></div>`,
+                })}
+                eventHandlers={{
+                  click: () => setSelectedBodyPoint(point),
+                }}
+              >
+                <Popup>
+                  <div>
+                    <h3>{point.name}</h3>
+                    <p>X: {point.x}</p>
+                    <p>Y: {point.y}</p>
+                    <p>Vitesse X: {point.vitesseX}</p>
+                    <p>Vitesse Y: {point.vitesseY}</p>
+                    <p>Accélération X: {point.accelerationX}</p>
+                    <p>Accélération Y: {point.accelerationY}</p>
+                    <p>Masse: {point.masse}</p>
+                  </div>
+                </Popup>
+              </Marker>
+            );
+          })}
         </MapContainer>
       </div>
     </div>
