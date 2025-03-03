@@ -4,12 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "start": "vite preview",
-  "postinstall": "npm run build",
+    "start": "serve -s dist -l 5001",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
@@ -30,6 +28,7 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "serve": "^14.2.4",
     "vite": "^6.2.0"
   }
 }
