@@ -3,6 +3,8 @@ package org.acme;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.core.Response;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -60,10 +62,11 @@ public class BodyCtrl {
         return point;
     }
 
-    @DELETE
+    @POST
     @Path("/reset")
-    public void resetPoints() {
+    public Response resetPoints() {
         points.clear();
+        return Response.ok(points).build();
     }
 
     @POST
