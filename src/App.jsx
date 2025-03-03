@@ -1,10 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 import "./App.css";
 
 const App = () => {
   const [bodyPoints, setBodyPoints] = useState([]);
   const [selectedBodyPoint, setSelectedBodyPoint] = useState(null);
+
   const [newPoint, setNewPoint] = useState({
     name: "",
     x: 0,
@@ -16,8 +20,6 @@ const App = () => {
     accelerationY: 0,
     masse: 0,
   });
-
-  const canvasRef = useRef(null);
 
   useEffect(() => {
     axios
@@ -51,20 +53,18 @@ const App = () => {
       .catch((error) => {
         console.error("Erreur lors de la réinitialisation:", error);
       });
-  };
+  }
 
   const deleteWithHighCoordinates = () => {
     axios
-      .delete(
-        "https://nbody-back-79c68c764a72.herokuapp.com/body/deleteHighCoordinates"
-      )
+      .delete("https://nbody-back-79c68c764a72.herokuapp.com/body/deleteHighCoordinates")
       .then((response) => {
         setBodyPoints(response.data);
       })
       .catch((error) => {
         console.error("Erreur lors de la suppression:", error);
       });
-  };
+  }
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -96,38 +96,6 @@ const App = () => {
       });
   };
 
-  // Fonction pour dessiner sur le canvas
-  const draw = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    bodyPoints.forEach((point) => {
-      const radius = point.masse / 10; // Taille du point proportionnelle à la masse
-      const color = selectedBodyPoint?.id === point.id ? "red" : "blue";
-
-      ctx.beginPath();
-      ctx.arc(point.x, point.y, radius, 0, 2 * Math.PI);
-      ctx.fillStyle = color;
-      ctx.fill();
-      ctx.stroke();
-
-      // Afficher les informations du point si sélectionné
-      if (selectedBodyPoint?.id === point.id) {
-        ctx.fillStyle = "black";
-        ctx.font = "12px Arial";
-        ctx.fillText(point.name, point.x + 10, point.y);
-        ctx.fillText(`X: ${point.x}`, point.x + 10, point.y + 15);
-        ctx.fillText(`Y: ${point.y}`, point.x + 10, point.y + 30);
-      }
-    });
-  };
-
-  // Mise à jour du canvas à chaque changement de points
-  useEffect(() => {
-    draw();
-  }, [bodyPoints, selectedBodyPoint]);
-
   return (
     <div className="App">
       <h1>N-Body Simulation</h1>
@@ -142,24 +110,48 @@ const App = () => {
         </button>
       </div>
 
-      <div className="canvas-container">
-        <canvas
-          ref={canvasRef}
-          width="800"
-          height="600"
-          onClick={(e) => {
-            const rect = canvasRef.current.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+      <div className="map-container">
+        <MapContainer
+          center={[0, 0]}
+          zoom={10}
+          style={{ height: "100%", width: "1430px" }}
+          crs={L.CRS.Simple}
+          minZoom={-Infinity}
+          maxZoom={Infinity}
+        >
+          <TileLayer url="" />
 
-            const point = bodyPoints.find(
-              (p) => Math.abs(p.x - x) < 10 && Math.abs(p.y - y) < 10
+          {bodyPoints.map((point) => {
+            return (
+              <Marker
+                key={point.id}
+                position={[point.y, point.x]}
+                icon={L.divIcon({
+                  className: "custom-icon",
+                  html: `<div style="background-color: ${
+                    selectedBodyPoint?.id === point.id ? "red" : "blue"
+                  }; border-radius: 50%; width: 10px; height: 10px;"></div>`,
+                })}
+                eventHandlers={{
+                  click: () => setSelectedBodyPoint(point),
+                }}
+              >
+                <Popup>
+                  <div>
+                    <h3>{point.name}</h3>
+                    <p>X: {point.x}</p>
+                    <p>Y: {point.y}</p>
+                    <p>Vitesse X: {point.vitesseX}</p>
+                    <p>Vitesse Y: {point.vitesseY}</p>
+                    <p>Accélération X: {point.accelerationX}</p>
+                    <p>Accélération Y: {point.accelerationY}</p>
+                    <p>Masse: {point.masse}</p>
+                  </div>
+                </Popup>
+              </Marker>
             );
-            if (point) {
-              setSelectedBodyPoint(point);
-            }
-          }}
-        />
+          })}
+        </MapContainer>
       </div>
     </div>
   );
