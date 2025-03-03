@@ -23,7 +23,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/body")
+      .get("https://nbody-back-79c68c764a72.herokuapp.com/body")
       .then((response) => {
         setBodyPoints(response.data);
         console.log("Points du corps récupérés:", response.data);
@@ -35,7 +35,7 @@ const App = () => {
 
   const simulateMovement = () => {
     axios
-      .post("http://localhost:8080/body/simulate")
+      .post("https://nbody-back-79c68c764a72.herokuapp.com/body/simulate")
       .then((response) => {
         setBodyPoints(response.data);
       })
@@ -53,7 +53,7 @@ const App = () => {
 
   const addNewPoint = () => {
     axios
-      .post("http://localhost:8080/body", newPoint)
+      .post("https://nbody-back-79c68c764a72.herokuapp.com/body", newPoint)
       .then((response) => {
         setBodyPoints([...bodyPoints, response.data]);
         setNewPoint({
