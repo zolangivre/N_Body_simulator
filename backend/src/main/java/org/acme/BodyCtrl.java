@@ -26,7 +26,7 @@ public class BodyCtrl {
                     (Math.random() - 0.5) * 10,
                     (Math.random() - 0.5) * 5,
                     (Math.random() - 0.5) * 5,
-                    (Math.random() - 0.5) * 10,
+                    Math.random() * 1000,
                     Math.random() * 360 // Random angle between 0 and 360 degrees
             ));
         }
@@ -72,7 +72,7 @@ public class BodyCtrl {
                 (Math.random() - 0.5) * 10,
                 (Math.random() - 0.5) * 5,
                 (Math.random() - 0.5) * 5,
-                (Math.random() - 0.5) * 10,
+                Math.random() * 1000,
                 Math.random() * 360 // Random angle between 0 and 360 degrees
         );
         points.add(point);

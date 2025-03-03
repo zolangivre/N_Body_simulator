@@ -75,7 +75,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Simulation en Temps Réel des Points du Corps</h1>
+      <h1>N-Body Simulation</h1>
 
       <div>
         <h3>Créer un nouveau point</h3>
