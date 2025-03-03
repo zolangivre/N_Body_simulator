@@ -50,9 +50,9 @@ public class SimulationService {
                 totalAy += ay;
             }
 
-            // Ajout d'une variation aléatoire pour éviter un mouvement trop uniforme
-            totalAx += (random.nextDouble() - 0.5) * MOVEMENT_VARIABILITY;
-            totalAy += (random.nextDouble() - 0.5) * MOVEMENT_VARIABILITY;
+//            // Ajout d'une variation aléatoire pour éviter un mouvement trop uniforme
+//            totalAx += (random.nextDouble() - 0.5) * MOVEMENT_VARIABILITY;
+//            totalAy += (random.nextDouble() - 0.5) * MOVEMENT_VARIABILITY;
 
             // Mise à jour des accélérations
             p1.setAccelerationX(totalAx);
