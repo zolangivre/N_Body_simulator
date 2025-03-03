@@ -69,6 +69,28 @@ const App = () => {
       });
   };
 
+    const addNewPoint = () => {
+      axios
+        .post("https://nbody-back-79c68c764a72.herokuapp.com/body", newPoint)
+        .then((response) => {
+          setBodyPoints([...bodyPoints, response.data]);
+          setNewPoint({
+            name: "",
+            x: 0,
+            y: 0,
+            z: 0,
+            vitesseX: 0,
+            vitesseY: 0,
+            accelerationX: 0,
+            accelerationY: 0,
+            masse: 0,
+          });
+        })
+        .catch((error) => {
+          console.error("Erreur lors de l'ajout du point:", error);
+        });
+    };
+
   useEffect(() => {
     if (intervalId) clearInterval(intervalId);
     intervalId = setInterval(() => {
@@ -97,6 +119,10 @@ const App = () => {
         />
         <span>{speed} ms</span>
       </div>
+
+      <button type="button" onClick={addNewPoint}>
+        Ajouter un point
+      </button>
 
       <button type="button" onClick={reset}>
         Reset
