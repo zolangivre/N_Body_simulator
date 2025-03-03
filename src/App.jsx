@@ -57,7 +57,7 @@ const App = () => {
 
   const deleteWithHighCoordinates = () => {
     axios
-      .post(
+      .delete(
         "https://nbody-back-79c68c764a72.herokuapp.com/body/deleteHighCoordinates"
       )
       .then((response) => {
