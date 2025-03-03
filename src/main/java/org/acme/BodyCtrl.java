@@ -71,7 +71,7 @@ public class BodyCtrl {
 
     @POST
     @Path("/deleteHighCoordinates")
-    public void deletePointsWithHighCoordinates(@QueryParam("threshold") double threshold) {
-        points.removeIf(point -> Math.abs(point.getX()) > threshold || Math.abs(point.getY()) > threshold);
+    public void deletePointsWithHighCoordinates() {
+        points.removeIf(point -> Math.abs(point.getX()) > 20000 || Math.abs(point.getY()) > 20000);
     }
 }
