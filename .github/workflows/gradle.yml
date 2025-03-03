@@ -37,10 +37,14 @@ jobs:
       - name: Lancer les tests backend
         run: ./gradlew test
 
+      - name: Copier le Dockerfile à la racine
+        run: cp $GITHUB_WORKSPACE/backend/src/main/docker/Dockerfile.jvm $GITHUB_WORKSPACE/backend/Dockerfile
+      
       - name: Générer l'image Docker du backend
         run: |
           cd $GITHUB_WORKSPACE/backend
           docker build -t my-backend .
+
 
   frontend:
     name: Build & Test Frontend
