@@ -20,14 +20,13 @@ public class BodyCtrl {
             points.add(new BodyPoint(
                     (long) i,
                     "Point " + i,
-                    Math.random() * 100,
-                    Math.random() * 100,
-                    Math.random() * 100,
-                    Math.random() * 10,
-                    Math.random() * 10,
-                    Math.random() * 5,
-                    Math.random() * 5,
-                    Math.random() * 10,
+                    (Math.random() - 0.5) * 100,
+                    (Math.random() - 0.5) * 100,
+                    (Math.random() - 0.5) * 10,
+                    (Math.random() - 0.5) * 10,
+                    (Math.random() - 0.5) * 5,
+                    (Math.random() - 0.5) * 5,
+                    (Math.random() - 0.5) * 10,
                     Math.random() * 360 // Random angle between 0 and 360 degrees
             ));
         }
@@ -52,7 +51,6 @@ public class BodyCtrl {
             if (p.getId().equals(point.getId())) {
                 p.setX(point.getX());
                 p.setY(point.getY());
-                p.setZ(point.getZ());
                 p.setVitesseX(point.getVitesseX());
                 p.setVitesseY(point.getVitesseY());
                 p.setAccelerationX(point.getAccelerationX());
@@ -68,14 +66,13 @@ public class BodyCtrl {
         BodyPoint point = new BodyPoint(
                 (long) (points.size() + 1),
                 "Point " + (points.size() + 1),
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 10,
-                Math.random() * 10,
-                Math.random() * 5,
-                Math.random() * 5,
-                Math.random() * 10,
+                (Math.random() - 0.5) * 100,
+                (Math.random() - 0.5) * 100,
+                (Math.random() - 0.5) * 10,
+                (Math.random() - 0.5) * 10,
+                (Math.random() - 0.5) * 5,
+                (Math.random() - 0.5) * 5,
+                (Math.random() - 0.5) * 10,
                 Math.random() * 360 // Random angle between 0 and 360 degrees
         );
         points.add(point);

@@ -5,7 +5,6 @@ public class BodyPoint {
     private String name;
     private double x;
     private double y;
-    private double z;
     private double vitesseX;
     private double vitesseY;
     private double accelerationX;
@@ -17,12 +16,11 @@ public class BodyPoint {
 
     public BodyPoint() {}
 
-    public BodyPoint(Long id, String name, double x, double y, double z, double vitesseX, double vitesseY, double accelerationX, double accelerationY, double masse, double angle) {
+    public BodyPoint(Long id, String name, double x, double y, double vitesseX, double vitesseY, double accelerationX, double accelerationY, double masse, double angle) {
         this.id = id;
         this.name = name;
         this.x = x;
         this.y = y;
-        this.z = z;
         this.vitesseX = vitesseX;
         this.vitesseY = vitesseY;
         this.accelerationX = accelerationX;
@@ -63,14 +61,6 @@ public class BodyPoint {
 
     public void setY(double y) {
         this.y = y;
-    }
-
-    public double getZ() {
-        return z;
-    }
-
-    public void setZ(double z) {
-        this.z = z;
     }
 
     public double getVitesseX() {

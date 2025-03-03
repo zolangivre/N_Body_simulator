@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./App.css";
@@ -73,25 +73,6 @@ const App = () => {
       });
   };
 
-  const limitCoordinates = (x, y) => {
-    const minX = -1000,
-      maxX = 1000;
-    const minY = -1000,
-      maxY = 1000;
-    const limitedX = Math.min(Math.max(x, minX), maxX);
-    const limitedY = Math.min(Math.max(y, minY), maxY);
-    return [limitedX, limitedY];
-  };
-
-  const MapUpdater = () => {
-    const map = useMap();
-    const bounds = bodyPoints.map((point) => [point.y, point.x]);
-    if (bounds.length > 0) {
-      map.fitBounds(bounds);
-    }
-    return null;
-  };
-
   return (
     <div className="App">
       <h1>Simulation en Temps Réel des Points du Corps</h1>
@@ -106,16 +87,19 @@ const App = () => {
       <div className="map-container">
         <MapContainer
           center={[0, 0]}
-          zoom={2}
-          style={{ height: "100%", width: "100%" }}
+          zoom={10}
+          style={{ height: "100%", width: "1430px" }}
+          crs={L.CRS.Simple}
+          minZoom={-Infinity}
+          maxZoom={Infinity}
         >
-          <TileLayer url="https:" />
+          <TileLayer url="" />
+
           {bodyPoints.map((point) => {
-            const [limitedX, limitedY] = limitCoordinates(point.x, point.y);
             return (
               <Marker
                 key={point.id}
-                position={[limitedY, limitedX]}
+                position={[point.y, point.x]}
                 icon={L.divIcon({
                   className: "custom-icon",
                   html: `<div style="background-color: ${
@@ -126,7 +110,19 @@ const App = () => {
                   click: () => setSelectedBodyPoint(point),
                 }}
               >
-                <Popup>{point.name}</Popup>
+                <Popup>
+                  <div>
+                    <h3>{point.name}</h3>
+                    <p>X: {point.x}</p>
+                    <p>Y: {point.y}</p>
+                    <p>Z: {point.z}</p>
+                    <p>Vitesse X: {point.vitesseX}</p>
+                    <p>Vitesse Y: {point.vitesseY}</p>
+                    <p>Accélération X: {point.accelerationX}</p>
+                    <p>Accélération Y: {point.accelerationY}</p>
+                    <p>Masse: {point.masse}</p>
+                  </div>
+                </Popup>
               </Marker>
             );
           })}
