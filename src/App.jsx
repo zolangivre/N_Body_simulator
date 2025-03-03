@@ -8,6 +8,8 @@ import "./App.css";
 const App = () => {
   const [bodyPoints, setBodyPoints] = useState([]);
   const [selectedBodyPoint, setSelectedBodyPoint] = useState(null);
+  const [speed, setSpeed] = useState(100); // Vitesse par défaut
+  let intervalId = null;
 
   const [newPoint, setNewPoint] = useState({
     name: "",
@@ -26,7 +28,6 @@ const App = () => {
       .get("https://nbody-back-79c68c764a72.herokuapp.com/body")
       .then((response) => {
         setBodyPoints(response.data);
-        console.log("Points du corps récupérés:", response.data);
       })
       .catch((error) => {
         console.error("Erreur de récupération des points du corps:", error);
@@ -68,34 +69,39 @@ const App = () => {
       });
   };
 
+    const addNewPoint = () => {
+      axios
+        .post("https://nbody-back-79c68c764a72.herokuapp.com/body", newPoint)
+        .then((response) => {
+          setBodyPoints([...bodyPoints, response.data]);
+          setNewPoint({
+            name: "",
+            x: 0,
+            y: 0,
+            z: 0,
+            vitesseX: 0,
+            vitesseY: 0,
+            accelerationX: 0,
+            accelerationY: 0,
+            masse: 0,
+          });
+        })
+        .catch((error) => {
+          console.error("Erreur lors de l'ajout du point:", error);
+        });
+    };
+
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    if (intervalId) clearInterval(intervalId);
+    intervalId = setInterval(() => {
       simulateMovement();
       deleteWithHighCoordinates();
-    }, 100);
+    }, speed);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [speed]);
 
-  const addNewPoint = () => {
-    axios
-      .post("https://nbody-back-79c68c764a72.herokuapp.com/body", newPoint)
-      .then((response) => {
-        setBodyPoints([...bodyPoints, response.data]);
-        setNewPoint({
-          name: "",
-          x: 0,
-          y: 0,
-          z: 0,
-          vitesseX: 0,
-          vitesseY: 0,
-          accelerationX: 0,
-          accelerationY: 0,
-          masse: 0,
-        });
-      })
-      .catch((error) => {
-        console.error("Erreur lors de l'ajout du point:", error);
-      });
+  const handleSpeedChange = (event) => {
+    setSpeed(Number(event.target.value));
   };
 
   return (
@@ -103,14 +109,24 @@ const App = () => {
       <h1>N-Body Simulation</h1>
 
       <div>
-        <h3>Créer un nouveau point</h3>
-        <button type="button" onClick={addNewPoint}>
-          Ajouter un point
-        </button>
-        <button type="button" onClick={reset}>
-          Reset
-        </button>
+        <h3>Vitesse de simulation</h3>
+        <input
+          type="range"
+          min="10"
+          max="500"
+          value={speed}
+          onChange={handleSpeedChange}
+        />
+        <span>{speed} ms</span>
       </div>
+
+      <button type="button" onClick={addNewPoint}>
+        Ajouter un point
+      </button>
+
+      <button type="button" onClick={reset}>
+        Reset
+      </button>
 
       <div className="map-container">
         <MapContainer
