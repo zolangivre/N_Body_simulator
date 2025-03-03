@@ -55,9 +55,21 @@ const App = () => {
       });
   }
 
+  const deleteWithHighCoordinates = () => {
+    axios
+      .delete("https://nbody-back-79c68c764a72.herokuapp.com/body/deleteHighCoordinates")
+      .then((response) => {
+        setBodyPoints(response.data);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la suppression:", error);
+      });
+  }
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       simulateMovement();
+      deleteWithHighCoordinates();
     }, 100);
     return () => clearInterval(intervalId);
   }, []);
