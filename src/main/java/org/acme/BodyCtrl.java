@@ -4,6 +4,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.inject.Inject;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Path("/body")
@@ -63,5 +64,11 @@ public class BodyCtrl {
     @Path("/reset")
     public void resetPoints() {
         points.clear();
+    }
+
+    @POST
+    @Path("/deleteHighCoordinates")
+    public void deletePointsWithHighCoordinates(@QueryParam("threshold") double threshold) {
+        points.removeIf(point -> Math.abs(point.getX()) > threshold || Math.abs(point.getY()) > threshold);
     }
 }
