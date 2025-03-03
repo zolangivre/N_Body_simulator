@@ -1,5 +1,6 @@
 package org.acme;
 
+import org.acme.model.BodyPoint;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,14 +1,13 @@
-package org.acme;
+package org.acme.svc;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import org.acme.model.BodyPoint;
+
 import java.util.List;
-import java.util.Random;
 
 @ApplicationScoped
 public class SimulationService {
 
-    private final Random random = new Random();
-    private static final double MOVEMENT_VARIABILITY = 0.1; // Variabilité aléatoire
     private static final double G = 0.1; // Constante gravitationnelle simulée
 
     public List<BodyPoint> simulate(List<BodyPoint> points, double deltaTime) {

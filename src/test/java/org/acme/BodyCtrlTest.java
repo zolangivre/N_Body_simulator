@@ -1,5 +1,8 @@
 package org.acme;
 
+import org.acme.ctrl.BodyCtrl;
+import org.acme.model.BodyPoint;
+import org.acme.svc.SimulationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

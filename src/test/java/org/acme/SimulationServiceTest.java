@@ -1,5 +1,7 @@
 package org.acme;
 
+import org.acme.model.BodyPoint;
+import org.acme.svc.SimulationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;

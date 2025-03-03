@@ -1,12 +1,13 @@
-package org.acme;
+package org.acme.ctrl;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
+import org.acme.model.BodyPoint;
+import org.acme.svc.SimulationService;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Path("/body")
