@@ -18,7 +18,6 @@ public class BodyCtrl {
     public BodyCtrl() {
         for (int i = 1; i <= 5; i++) {
             points.add(new BodyPoint(
-                    (long) i,
                     "Point " + i,
                     (Math.random() - 0.5) * 100,
                     (Math.random() - 0.5) * 100,
@@ -26,8 +25,7 @@ public class BodyCtrl {
                     (Math.random() - 0.5) * 10,
                     (Math.random() - 0.5) * 5,
                     (Math.random() - 0.5) * 5,
-                    Math.random() * 1000,
-                    Math.random() * 360 // Random angle between 0 and 360 degrees
+                    Math.random() * 1000
             ));
         }
     }
@@ -44,27 +42,10 @@ public class BodyCtrl {
         return simulationService.simulate(points, deltaTime);
     }
 
-    @POST
-    @Path("/move")
-    public List<BodyPoint> movePoint(BodyPoint point) {
-        for (BodyPoint p : points) {
-            if (p.getId().equals(point.getId())) {
-                p.setX(point.getX());
-                p.setY(point.getY());
-                p.setVitesseX(point.getVitesseX());
-                p.setVitesseY(point.getVitesseY());
-                p.setAccelerationX(point.getAccelerationX());
-                p.setAccelerationY(point.getAccelerationY());
-                p.setMasse(point.getMasse());
-            }
-        }
-        return points;
-    }
 
     @POST
     public BodyPoint createBodyPoint() {
         BodyPoint point = new BodyPoint(
-                (long) (points.size() + 1),
                 "Point " + (points.size() + 1),
                 (Math.random() - 0.5) * 100,
                 (Math.random() - 0.5) * 100,
@@ -72,8 +53,7 @@ public class BodyCtrl {
                 (Math.random() - 0.5) * 10,
                 (Math.random() - 0.5) * 5,
                 (Math.random() - 0.5) * 5,
-                Math.random() * 1000,
-                Math.random() * 360 // Random angle between 0 and 360 degrees
+                Math.random() * 1000
         );
         points.add(point);
         return point;

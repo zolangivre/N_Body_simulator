@@ -1,7 +1,6 @@
 package org.acme;
 
 public class BodyPoint {
-    private Long id;
     private String name;
     private double x;
     private double y;
@@ -10,14 +9,8 @@ public class BodyPoint {
     private double accelerationX;
     private double accelerationY;
     private double masse;
-    private double angle; // New property for angle
 
-    // Getters and Setters
-
-    public BodyPoint() {}
-
-    public BodyPoint(Long id, String name, double x, double y, double vitesseX, double vitesseY, double accelerationX, double accelerationY, double masse, double angle) {
-        this.id = id;
+    public BodyPoint(String name, double x, double y, double vitesseX, double vitesseY, double accelerationX, double accelerationY, double masse) {
         this.name = name;
         this.x = x;
         this.y = y;
@@ -26,26 +19,9 @@ public class BodyPoint {
         this.accelerationX = accelerationX;
         this.accelerationY = accelerationY;
         this.masse = masse;
-        this.angle = angle; // Initialize the new property
     }
 
     // Getters and setters for all properties
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public double getX() {
         return x;
@@ -100,14 +76,9 @@ public class BodyPoint {
     }
 
     public void setMasse(double masse) {
+        if (masse < 0) {
+            throw new IllegalArgumentException("La masse ne peut pas être négative");
+        }
         this.masse = masse;
-    }
-
-    public double getAngle() {
-        return angle;
-    }
-
-    public void setAngle(double angle) {
-        this.angle = angle;
     }
 }
