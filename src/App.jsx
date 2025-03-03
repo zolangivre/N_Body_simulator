@@ -115,7 +115,6 @@ const App = () => {
                     <h3>{point.name}</h3>
                     <p>X: {point.x}</p>
                     <p>Y: {point.y}</p>
-                    <p>Z: {point.z}</p>
                     <p>Vitesse X: {point.vitesseX}</p>
                     <p>Vitesse Y: {point.vitesseY}</p>
                     <p>Accélération X: {point.accelerationX}</p>
