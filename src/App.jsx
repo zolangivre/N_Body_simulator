@@ -56,19 +56,6 @@ const App = () => {
       });
   };
 
-  const deleteWithHighCoordinates = () => {
-    axios
-      .delete(
-        "https://nbody-back-79c68c764a72.herokuapp.com/body/deleteHighCoordinates"
-      )
-      .then((response) => {
-        setBodyPoints(response.data);
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la suppression:", error);
-      });
-  };
-
     const addNewPoint = () => {
       axios
         .post("https://nbody-back-79c68c764a72.herokuapp.com/body", newPoint)
@@ -95,7 +82,6 @@ const App = () => {
     if (intervalId) clearInterval(intervalId);
     intervalId = setInterval(() => {
       simulateMovement();
-      deleteWithHighCoordinates();
     }, speed);
     return () => clearInterval(intervalId);
   }, [speed]);
