@@ -1,0 +1,100 @@
+/* styles.css */
+.App {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f6f8;
+}
+
+h1 {
+    color: #333;
+    margin-top: 20px;
+}
+
+h3 {
+    color: #555;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.map-container {
+    margin-top: 20px;
+    width: 100%;
+    height: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.point-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.point-input label {
+    margin-right: 10px;
+}
+
+input[type="number"] {
+    width: 80px;
+}
+
+.selected-point {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-top: 20px;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.selected-point input {
+    width: 100%;
+}
+
+.selected-point button {
+    background-color: #2196F3;
+}
+
+.selected-point button:hover {
+    background-color: #0b7dda;
+}

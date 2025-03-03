@@ -1,41 +1,24 @@
-# Gradle
-.gradle/
-build/
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Eclipse
-.project
-.classpath
-.settings/
-bin/
+node_modules
+dist
+dist-ssr
+*.local
 
-# IntelliJ
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
 .idea
-*.ipr
-*.iml
-*.iws
-
-# NetBeans
-nb-configuration.xml
-
-# Visual Studio Code
-.vscode
-.factorypath
-
-# OSX
 .DS_Store
-
-# Vim
-*.swp
-*.swo
-
-# patch
-*.orig
-*.rej
-
-# Local environment
-.env
-
-# Plugin directory
-/.quarkus/cli/plugins/
-# TLS Certificates
-.certs/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
